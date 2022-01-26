@@ -7,11 +7,9 @@ services:
       - .:/app
     working_dir: /app
     environment:
-      - API=http://localhost/2:80
+      - API=http://localhost/api
     entrypoint: node
     command: [ "webserver.js","4000"]
-    ports:
-      - 4000:4000
 
   api1:
     image: node
@@ -20,18 +18,14 @@ services:
     working_dir: /app
     entrypoint: node
     command: [ "apiserver.js","3000"]
-    ports:
-      - 3000:3000
 
-  web2:
+  api2:
     image: node
     volumes:
       - .:/app
     working_dir: /app
     entrypoint: node
     command: [ "apiserver.js","3000"]
-    ports:
-      - 8080:8080
     
   proxy:
     image: nginx
